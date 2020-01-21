@@ -274,7 +274,7 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
                     showToast("Cannot run without Google Play, please check！");
                 } else {
                     Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
+                    startActivity(intent); //press the OPEN to enter the MainActivity
                 }
                 break;
             }

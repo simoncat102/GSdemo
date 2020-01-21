@@ -31,7 +31,7 @@
         android:required="false" />
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true" />
+        android:required="true" /> //specify requirement for OpenGL ES version 2
 
     <application
         android:name=".MApplication"
@@ -54,7 +54,7 @@
             android:value="AIzaSyD2_QAGIn1Tm2K4MnqYmaqnLogw3JnPHwc" /> //TODO: Enter your Google API Key here
 
         <meta-data android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:value="@integer/google_play_services_version" /> //Now I can use Google Maps Android APIs
 
         <activity
             android:name="dji.sdk.sdkmanager.DJIAoaControllerActivity"

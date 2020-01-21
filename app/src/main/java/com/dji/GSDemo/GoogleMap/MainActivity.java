@@ -133,7 +133,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         upload.setOnClickListener(this);
         start.setOnClickListener(this);
         stop.setOnClickListener(this);
-
+        //implement their setOnClickListener method and pass "this" as parameter.
     }
 
     @Override
@@ -158,6 +158,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         setContentView(R.layout.activity_main);
 
+        //Register BroadcastReceiver
         IntentFilter filter = new IntentFilter();
         filter.addAction(DJIDemoApplication.FLAG_CONNECTION_CHANGE);
         registerReceiver(mReceiver, filter);
@@ -166,7 +167,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this); //產生地圖?
 
         addListener();
 
@@ -176,7 +177,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            onProductConnectionChange();
+            onProductConnectionChange(); //when the DJI Product connection status change,
+                                         // we can use it to update our aircraft's location.
         }
     };
 
@@ -214,7 +216,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         if (mFlightController != null) {
             mFlightController.setStateCallback(new FlightControllerState.Callback() {
 
-                @Override
+                @Override //I can get the flight controller current state from the parameter.
                 public void onUpdate(FlightControllerState djiFlightControllerCurrentState) {
                     droneLocationLat = djiFlightControllerCurrentState.getAircraftLocation().getLatitude();
                     droneLocationLng = djiFlightControllerCurrentState.getAircraftLocation().getLongitude();
@@ -278,19 +280,25 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
+
     @Override
-    public void onMapClick(LatLng point) {
+    public void onMapClick(LatLng point) { //手按螢幕，儲存為新的點
+
         if (isAdd == true){
             markWaypoint(point);
             Waypoint mWaypoint = new Waypoint(point.latitude, point.longitude, altitude);
-            //Add Waypoints to Waypoint arraylist;
+            Waypoint point1 = new Waypoint(25.037676,121.432067,altitude);
+            Waypoint point2 = new Waypoint(25.037680,121.432123,altitude);
+            Waypoint point3 = new Waypoint(25.037565,121.432158,altitude);
             if (waypointMissionBuilder != null) {
-                waypointList.add(mWaypoint);
+                waypointList.add(point2);
+                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
+                waypointList.add(point3);
                 waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
             }else
             {
                 waypointMissionBuilder = new WaypointMission.Builder();
-                waypointList.add(mWaypoint);
+                waypointList.add(point1);
                 waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
             }
         }else{
@@ -380,7 +388,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
-    private void cameraUpdate(){
+    private void cameraUpdate(){ //move camera and zoom in Google Map to the drone's location.
         LatLng pos = new LatLng(droneLocationLat, droneLocationLng);
         float zoomlevel = (float) 18.0;
         CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(pos, zoomlevel);
@@ -408,6 +416,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         speed_RG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 
+            // show the configuration dialog when press the Config button.
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.lowSpeed){
@@ -571,7 +580,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap googleMap) { //中國大陸中 has one red pin.
         if (gMap == null) {
             gMap = googleMap;
             setUpMap();
