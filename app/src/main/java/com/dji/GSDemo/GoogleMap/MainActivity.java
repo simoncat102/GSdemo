@@ -280,6 +280,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
+    public void test(){
+        waypointMissionBuilder = new WaypointMission.Builder();
+        Waypoint point1 = new Waypoint(25.037676,121.432067,altitude);
+        Waypoint point2 = new Waypoint(25.037680,121.432123,altitude);
+        Waypoint point3 = new Waypoint(25.037565,121.432158,altitude);
+        waypointList.add(point1);
+        waypointList.add(point2);
+        waypointList.add(point3);
+        waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
+    }
+
 
     @Override
     public void onMapClick(LatLng point) { //手按螢幕，儲存為新的點
@@ -287,18 +298,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         if (isAdd == true){
             markWaypoint(point);
             Waypoint mWaypoint = new Waypoint(point.latitude, point.longitude, altitude);
-            Waypoint point1 = new Waypoint(25.037676,121.432067,altitude);
-            Waypoint point2 = new Waypoint(25.037680,121.432123,altitude);
-            Waypoint point3 = new Waypoint(25.037565,121.432158,altitude);
             if (waypointMissionBuilder != null) {
-                waypointList.add(point2);
-                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
-                waypointList.add(point3);
+                waypointList.add(mWaypoint);
                 waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
             }else
             {
                 waypointMissionBuilder = new WaypointMission.Builder();
-                waypointList.add(point1);
+                waypointList.add(mWaypoint);
                 waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
             }
         }else{
@@ -352,6 +358,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             }
             case R.id.add:{
                 enableDisableAdd();
+                test();
                 break;
             }
             case R.id.clear:{
