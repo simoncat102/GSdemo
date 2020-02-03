@@ -37,6 +37,12 @@
             android:text="Add"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/add1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add1"
+            android:layout_weight="1"/>
+        <Button
             android:id="@+id/clear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

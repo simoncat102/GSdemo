@@ -74,6 +74,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private float mSpeed = 10.0f;
 
     private List<Waypoint> waypointList = new ArrayList<>();
+    private List<Waypoint> waypointList1 = new ArrayList<>();
 
     public static WaypointMission.Builder waypointMissionBuilder;
     private FlightController mFlightController;
@@ -291,6 +292,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
     }
 
+    public void test2(){
+        waypointMissionBuilder = new WaypointMission.Builder();
+        Waypoint point1 = new Waypoint(25.037536,121.432174,altitude);
+        Waypoint point2 = new Waypoint(25.037731,121.432105,altitude);
+        Waypoint point3 = new Waypoint(25.037747,121.431974,altitude);
+        waypointList1.add(point1);
+        waypointList1.add(point2);
+        waypointList1.add(point3);
+        waypointMissionBuilder.waypointList(waypointList1).waypointCount(waypointList1.size());
+    }
+
 
     @Override
     public void onMapClick(LatLng point) { //手按螢幕，儲存為新的點
@@ -359,6 +371,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.add:{
                 enableDisableAdd();
                 test();
+                break;
+            }
+
+            case R.id.add1:{
+                enableDisableAdd();
+                test2();
                 break;
             }
             case R.id.clear:{
