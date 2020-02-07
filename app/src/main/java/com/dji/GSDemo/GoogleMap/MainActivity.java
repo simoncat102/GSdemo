@@ -61,7 +61,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private GoogleMap gMap;
 
-    private Button locate, add, clear;
+    private Button locate, add, add1, clear;
     private Button config, upload, start, stop;
 
     private boolean isAdd = false;
@@ -121,6 +121,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         locate = (Button) findViewById(R.id.locate);
         add = (Button) findViewById(R.id.add);
+        add1 = (Button) findViewById(R.id.add1);
         clear = (Button) findViewById(R.id.clear);
         config = (Button) findViewById(R.id.config);
         upload = (Button) findViewById(R.id.upload);
@@ -129,6 +130,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         locate.setOnClickListener(this);
         add.setOnClickListener(this);
+        add1.setOnClickListener(this);
         clear.setOnClickListener(this);
         config.setOnClickListener(this);
         upload.setOnClickListener(this);
@@ -289,18 +291,18 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         waypointList.add(point1);
         waypointList.add(point2);
         waypointList.add(point3);
-        waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
+        waypointMissionBuilder.waypointList(waypointList).waypointCount(3);
     }
 
     public void test2(){
         waypointMissionBuilder = new WaypointMission.Builder();
-        Waypoint point1 = new Waypoint(25.037536,121.432174,altitude);
-        Waypoint point2 = new Waypoint(25.037731,121.432105,altitude);
-        Waypoint point3 = new Waypoint(25.037747,121.431974,altitude);
-        waypointList1.add(point1);
-        waypointList1.add(point2);
-        waypointList1.add(point3);
-        waypointMissionBuilder.waypointList(waypointList1).waypointCount(waypointList1.size());
+        Waypoint point4 = new Waypoint(25.037536,121.432174,altitude);
+        Waypoint point5 = new Waypoint(25.037731,121.432105,altitude);
+        Waypoint point6 = new Waypoint(25.037747,121.431974,altitude);
+        waypointList.add(point4);
+        waypointList.add(point5);
+        waypointList.add(point6);
+        waypointMissionBuilder.waypointList(waypointList).waypointCount(3);
     }
 
 
@@ -380,6 +382,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
             }
             case R.id.clear:{
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
