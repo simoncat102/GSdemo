@@ -373,6 +373,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.add:{
                 enableDisableAdd();
                 test();
+
+                //doing config mission stuff
+                Log.e(TAG,"altitude "+10);
+                Log.e(TAG,"speed "+3.0f);
+                Log.e(TAG, "mFinishedAction "+WaypointMissionFinishedAction.NO_ACTION);
+                Log.e(TAG, "mHeadingMode "+WaypointMissionHeadingMode.CONTROL_BY_REMOTE_CONTROLLER);
+                configWayPointMission();
+
+//                        .create()
+//                        .show();
+//                         這兩個不知道為什麼放在這邊說沒有function
+
+
                 break;
             }
 
@@ -459,7 +472,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         });
 
         actionAfterFinished_RG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
+//設定路線區
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 Log.d(TAG, "Select finish action");
@@ -499,12 +512,22 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 .setPositiveButton("Finish",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id) {
 
+                        //這兩行不知道是幹嘛用ㄉ
+
                         String altitudeString = wpAltitude_TV.getText().toString();
                         altitude = Integer.parseInt(nulltoIntegerDefalt(altitudeString));
-                        Log.e(TAG,"altitude "+altitude);
-                        Log.e(TAG,"speed "+mSpeed);
-                        Log.e(TAG, "mFinishedAction "+mFinishedAction);
-                        Log.e(TAG, "mHeadingMode "+mHeadingMode);
+
+//                        Log.e(TAG,"altitude "+altitude);
+//                        Log.e(TAG,"speed "+mSpeed);
+//                        Log.e(TAG, "mFinishedAction "+mFinishedAction);
+//                        Log.e(TAG, "mHeadingMode "+mHeadingMode);
+
+                        //這邊在預設值
+
+                        Log.e(TAG,"altitude "+10);
+                        Log.e(TAG,"speed "+3.0f);
+                        Log.e(TAG, "mFinishedAction "+WaypointMissionFinishedAction.NO_ACTION);
+                        Log.e(TAG, "mHeadingMode "+WaypointMissionHeadingMode.CONTROL_BY_REMOTE_CONTROLLER);
                         configWayPointMission();
                     }
 
@@ -515,9 +538,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     }
 
                 })
+
                 .create()
                 .show();
     }
+
 
     String nulltoIntegerDefalt(String value){
         if(!isIntValue(value)) value="0";
