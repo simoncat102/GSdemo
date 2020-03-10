@@ -299,10 +299,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         Waypoint point4 = new Waypoint(25.037536,121.432174,altitude);
         Waypoint point5 = new Waypoint(25.037731,121.432105,altitude);
         Waypoint point6 = new Waypoint(25.037747,121.431974,altitude);
-        waypointList.add(point4);
-        waypointList.add(point5);
-        waypointList.add(point6);
-        waypointMissionBuilder.waypointList(waypointList).waypointCount(3);
+        waypointList1.add(point4);
+        waypointList1.add(point5);
+        waypointList1.add(point6);
+        waypointMissionBuilder.waypointList(waypointList1).waypointCount(3);
     }
 
 
@@ -392,6 +392,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.add1:{
                 enableDisableAdd();
                 test2();
+
+                //doing config mission stuff
+                Log.e(TAG,"altitude "+10);
+                Log.e(TAG,"speed "+3.0f);
+                Log.e(TAG, "mFinishedAction "+WaypointMissionFinishedAction.NO_ACTION);
+                Log.e(TAG, "mHeadingMode "+WaypointMissionHeadingMode.CONTROL_BY_REMOTE_CONTROLLER);
+                configWayPointMission();
+
                 break;
             }
             case R.id.clear:{
@@ -404,7 +412,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
                 });
                 waypointList.clear();
+                waypointList1.clear();
                 waypointMissionBuilder.waypointList(waypointList);
+                waypointMissionBuilder.waypointList(waypointList1);
                 updateDroneLocation();
                 break;
             }
@@ -455,6 +465,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         RadioGroup actionAfterFinished_RG = (RadioGroup) wayPointSettings.findViewById(R.id.actionAfterFinished);
         RadioGroup heading_RG = (RadioGroup) wayPointSettings.findViewById(R.id.heading);
 
+//        設定速度
         speed_RG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 
             // show the configuration dialog when press the Config button.
@@ -471,8 +482,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         });
 
-        actionAfterFinished_RG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 //設定路線區
+        actionAfterFinished_RG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 Log.d(TAG, "Select finish action");
@@ -512,8 +524,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 .setPositiveButton("Finish",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id) {
 
-                        //這兩行不知道是幹嘛用ㄉ
-
+                        //這兩行不知道是幹嘛用ㄉ simoncat
+                        // 我知道！將使用者輸入的高度轉型態！Lyn
                         String altitudeString = wpAltitude_TV.getText().toString();
                         altitude = Integer.parseInt(nulltoIntegerDefalt(altitudeString));
 
