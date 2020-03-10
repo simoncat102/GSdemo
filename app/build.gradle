@@ -33,11 +33,12 @@ android {
         }
     }
 
-    dexOptions {
-        incremental = true
-        preDexLibraries = false
-        javaMaxHeapSize "4g"
-    }
+//    incremental被棄用了，偶先註解掉
+//    dexOptions {
+//        incremental = true
+//        preDexLibraries = false
+//        javaMaxHeapSize "4g"
+//    }
 
     packagingOptions {
         doNotStrip "*/*/libdjivideo.so"
