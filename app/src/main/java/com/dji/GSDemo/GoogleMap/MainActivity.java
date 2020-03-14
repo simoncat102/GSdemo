@@ -306,6 +306,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
 
+
+
     @Override
     public void onMapClick(LatLng point) { //手按螢幕，儲存為新的點
 
